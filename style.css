@@ -6,53 +6,69 @@
 
 html {
     box-sizing: border-box;
+    font-size: 62.5%;
 }
 
-body {
-    background-color: #ddd;
-    height: 100vh;
+.main {
+    background-color: #1d39b3;
+    height: 70vh;
+}
+
+.header {
+    background-color: #1d39b3;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header__text {
+    display: flex;
+    font-size: 3.2rem;
+    font-family: monospace;
+}
+
+.card {
+    padding: .5rem 1rem;
+    margin: .4rem;
+    position: relative;
+    width: 12vw;
+    max-width: 120px;
+    height: 12vh;
+    max-height: 12vw;
+}
+
+.card.card__active > .card__front{
+    transform: perspective(600px) rotateY(0deg);
+}
+
+.card.card__active > .card__back{
+    transform: perspective(600px) rotateY(-180deg);
+}
+
+.card__back,
+.card__front {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
     overflow: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+    transition: transform .4s linear;
+    background-color: #3b90ff;
+    border: 2px solid #7cb3fa;
+    border-radius: 5px;
+}
+
+.card__front {
+    transform: perspective(600px) rotateY(180deg);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.main {
-    width: 40vh;
-    height: 40vh;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    grid-gap: 10px;
-}
-.card {
-    cursor: pointer;
-    position: relative;
-}
-
-.card.active > .front{
+.card__back {
     transform: perspective(600px) rotateY(0deg);
-}
-.card.active > .back{
-    transform: perspective(600px) rotateY(-180deg);
-}
-
-.front,
-.back {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    backface-visibility: hidden;
-    position: absolute;
-    transition: transform .4s linear;
-}
-
-.front {
-    background-color: red;
-    transform: perspective(600px) rotateY(180deg);
-}
-
-.back {
-    transform: perspective(600px) rotateY(0deg);
-    background-color: #000;
 }
