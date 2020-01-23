@@ -27,6 +27,7 @@ html {
     display: flex;
     font-size: 3.2rem;
     font-family: monospace;
+    animation: header-move 1.4s .2s both;
 }
 
 .card {
@@ -39,11 +40,11 @@ html {
     max-height: 12vw;
 }
 
-.card.card__active > .card__front{
+.card.card--active > .card__front{
     transform: perspective(600px) rotateY(0deg);
 }
 
-.card.card__active > .card__back{
+.card.card--active > .card__back{
     transform: perspective(600px) rotateY(-180deg);
 }
 
@@ -71,4 +72,12 @@ html {
 
 .card__back {
     transform: perspective(600px) rotateY(0deg);
+}
+
+@keyframes header-move {
+    from {
+        transform: translateY(-400%);
+        opacity: 0;
+    }
+    to {transform: translateY(0);}
 }
