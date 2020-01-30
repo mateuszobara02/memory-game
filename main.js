@@ -1,15 +1,7 @@
-let cards = document.querySelectorAll('.card');
-
-cards = [...cards];
+const cards = [...document.querySelectorAll('.card')];
 
 cards.forEach((card) => {
-    card.addEventListener('click', () => {
-        card.classList.add('card--active');
-    });
-});
-
-cards.forEach((card) => {
-    setTimeout(() => {
-        card.classList.add('card--active');
-    }, 1400);
+    card.addEventListener('click', (e) => {
+        e.target.classList.add('is-active');
+    })
 })
