@@ -69,9 +69,8 @@ body {
     position: relative;
 }
 
-.card::before,
-.card::after {
-    content: '';
+.front,
+.back {
     position: absolute;
     display: block;
     top: 0;
@@ -82,26 +81,24 @@ body {
     transition: .4s;
 }
 
-.card::before {
+.front {
     transform: perspective(1000px) rotateY(0deg);
     background-color: #bbe1fa;
     opacity: 1;
-
 }
 
-.card::after {
+.back {
     transform: perspective(1000px) rotateY(180deg);
     background-color: #000;
     opacity: 0;
 }
 
-.card.is-active::before {
+.card.is-active .front {
     transform: perspective(1000px) rotateY(-180deg);
     opacity: 0;
-
 }
 
-.card.is-active::after {
+.card.is-active .back {
     transform: perspective(1000px) rotateY(0deg);
     opacity: 1;
 }
