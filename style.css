@@ -67,6 +67,7 @@ body {
 .card {
     cursor: pointer;
     position: relative;
+    transition: opacity 1s;
 }
 
 .front,
@@ -89,7 +90,6 @@ body {
 
 .back {
     transform: perspective(1000px) rotateY(180deg);
-    background-color: #000;
     opacity: 0;
 }
 
@@ -101,6 +101,11 @@ body {
 .card.is-active .back {
     transform: perspective(1000px) rotateY(0deg);
     opacity: 1;
+}
+
+.hidden {
+    opacity: 0;
+    cursor: default;
 }
 
 @media only screen and (orientation: landscape) and (max-height: 500px) {
