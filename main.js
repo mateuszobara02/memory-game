@@ -1,3 +1,4 @@
+const gameBoard = document.querySelector('.board');
 const cards = [...document.querySelectorAll('.card')];
 const cardsBack = [...document.querySelectorAll('.back')];
 const cardsFront = [...document.querySelectorAll('.front')];
@@ -17,6 +18,7 @@ const handleClickEvent = () => cards.forEach(card => card.addEventListener('clic
 
 const activeCards = [];
 const pairCards = [];
+let pairs = 0;
 
 function handleClick(e) {
     if (activeCards.length < 2) {
@@ -27,12 +29,14 @@ function handleClick(e) {
         handleClickEvent();
     }
     checkCards();
+    checkForWin();
 }
 
 const checkCards = () => {
     if (activeCards.length === 2) {
         cards.forEach(card => card.removeEventListener('click', handleClick));
         if (activeCards[0] === activeCards[1]) {
+            pairs++;
             pairCards.forEach(pair => {
                 setTimeout(() => {
                     pair.classList.remove('is-active');
@@ -54,3 +58,11 @@ const checkCards = () => {
     }
 }
 handleClickEvent();
+
+const checkForWin = () => {
+    if(pairs === cards.length/2) {
+        setTimeout(() => {
+            gameBoard.classList.add('game-end');
+        }, 2000);
+    }
+}
