@@ -20,16 +20,20 @@ const activeCards = [];
 const pairCards = [];
 let pairs = 0;
 
+let attempts = 0;
+
+const timerStart = Date.now();
+
 function handleClick(e) {
     if (activeCards.length < 2) {
         this.classList.add('is-active');
-        this.removeEventListener('click', handleClick);
         activeCards.push(e.target.style.background);
         pairCards.push(this);
         handleClickEvent();
     }
     checkCards();
     checkForWin();
+    this.removeEventListener('click', handleClick);
 }
 
 const checkCards = () => {
@@ -37,6 +41,7 @@ const checkCards = () => {
         cards.forEach(card => card.removeEventListener('click', handleClick));
         if (activeCards[0] === activeCards[1]) {
             pairs++;
+            attempts++;
             pairCards.forEach(pair => {
                 setTimeout(() => {
                     pair.classList.remove('is-active');
@@ -46,6 +51,7 @@ const checkCards = () => {
                 }, 1000);
             })
         } else if (activeCards[0] !== activeCards[1]) {
+            attempts++;
             pairCards.forEach(pair => {
                 setTimeout(() => {
                     pair.classList.remove('is-active');
@@ -59,10 +65,28 @@ const checkCards = () => {
 }
 handleClickEvent();
 
+const numberOfAttempts = document.querySelector('.attempts-number');
+
+const timeSeconds = document.querySelector('.time-sec');
+const timeMinutes = document.querySelector('.time-min');
+
 const checkForWin = () => {
     if(pairs === cards.length/2) {
+        const timerEnd = Date.now();
+        const totalTime = timerEnd - timerStart;
+        const seconds = Math.floor((totalTime/1000) % 60);
+        const minutes = Math.floor((totalTime/60000) % 60);
+
+        timeSeconds.innerHTML = `${seconds} sec`;
+        timeMinutes.innerHTML = `${minutes} min`;
+
         setTimeout(() => {
             gameBoard.classList.add('game-end');
         }, 2000);
+        numberOfAttempts.innerHTML = attempts;
     }
 }
+
+const newGameButton = document.querySelector('.play-next');
+
+newGameButton.addEventListener('click', () => location = location);
