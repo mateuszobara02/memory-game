@@ -3,16 +3,16 @@ const cards = [...document.querySelectorAll('.card')];
 const cardsBack = [...document.querySelectorAll('.back')];
 const cardsFront = [...document.querySelectorAll('.front')];
 
-const colors = ['#C0BCB5', '#C0BCB5', '#4A6C6F', '#4A6C6F', '#846075', '#846075', '#AF5D63', '#AF5D63', '#ED474A', '#ED474A', '#19535F', '#19535F', '#0B7A75', '#0B7A75', '#D7C9AA', '#D7C9AA', '#7B2D26', '#7B2D26', '#F0F3F5', '#F0F3F5', '#DD7373', '#DD7373', '#3B3561', '#3B3561', '#EAD94C', '#EAD94C', '#51A3A3', '#51A3A3', '#43291F', '#43291F', '#ADAABF', '#ADAABF', '#EBEFBF', '#EBEFBF', '#D8F1A0', '#D8F1A0'];
+const images = ["1", "1", "2", "2", "3", "3", "4", "4", "5", "5", "6", "6", "7", "7", "8", "8", "9", "9", "10", "10", "11", "11", "12", "12", "13", "13", "14", "14", "15", "15", "16", "16", "17", "17", "18", "18"];
 
-const randomColor = () => {
+const randomImage = () => {
     cardsBack.forEach(cardBack => {
-        const colorIndex = Math.floor(Math.random() * colors.length);
-        cardBack.style.background = `${colors[colorIndex]}`;
-        colors.splice(colorIndex, 1);
+        const imageIndex = Math.floor(Math.random() * images.length);
+        cardBack.style.backgroundImage = `url(img/${images[imageIndex]}.jpg)`;
+        images.splice(imageIndex, 1);
     })
 }
-randomColor();
+randomImage();
 
 const handleClickEvent = () => cards.forEach(card => card.addEventListener('click', handleClick));
 
@@ -27,7 +27,7 @@ const timerStart = Date.now();
 function handleClick(e) {
     if (activeCards.length < 2) {
         this.classList.add('is-active');
-        activeCards.push(e.target.style.background);
+        activeCards.push(e.target.style.backgroundImage);
         pairCards.push(this);
         handleClickEvent();
     }

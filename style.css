@@ -107,6 +107,8 @@ body {
 .back {
     transform: perspective(1000px) rotateY(180deg);
     opacity: 0;
+    background-position: center;
+    background-size: cover;
 }
 
 .card.is-active .front {
