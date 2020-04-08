@@ -1,0 +1,29 @@
+*,
+*::before,
+*::after
+    margin: 0
+    padding: 0
+    box-sizing: inherit
+
+html 
+    box-sizing: border-box
+    font-size: 62.5%
+
+    @media only screen and (min-width: $bp-medium)
+        font-size: 75%
+
+    @media only screen and (min-width: $bp-large)
+         font-size: 93.75%
+         
+    @media only screen and (min-width: $bp-huge)
+         font-size: 125%
+
+
+body 
+    overflow: hidden
+
+.app 
+    background-color: $color-dark 
+
+    @media only screen and (orientation: landscape) and (max-width: $bp-small)
+        grid-template-rows: 1fr

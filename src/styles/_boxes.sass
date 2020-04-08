@@ -1,0 +1,23 @@
+.boxes 
+    display: grid
+    grid-template-columns: repeat(4, 1fr)
+    grid-gap: 1rem
+    font-size: 3rem
+    font-family: monospace
+
+    &--primary
+        grid-template-columns: repeat(6, 1fr)
+        margin-bottom: 1rem
+
+        @media only screen and (min-width: $bp-small)
+            margin-right: 3rem
+            margin-bottom: 0
+
+
+    
+.box 
+    padding: 1rem 1.2rem
+    position: relative
+    text-align: center
+    border-radius: 1rem
+    background-color: $color-light

@@ -1,0 +1,29 @@
+.card 
+    cursor: pointer
+    position: relative
+    transition: opacity 1s
+
+    &__front
+        @include card;
+        transform: perspective(1000px) rotateY(0deg)
+        background-color: $color-light
+        opacity: 1
+
+    &__back
+        @include card;
+        transform: perspective(1000px) rotateY(180deg)
+        background-position: center
+        background-size: cover
+        opacity: 0
+
+    &--is-active &__front
+        transform: perspective(1000px) rotateY(-180deg)
+        opacity: 0
+        
+    &--is-active &__back
+        transform: perspective(1000px) rotateY(0deg)
+        opacity: 1
+
+    &--is-hidden
+        opacity: 0
+        cursor: default
